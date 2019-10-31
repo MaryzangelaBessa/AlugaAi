@@ -25,7 +25,7 @@ public class CadastroActivity extends AppCompatActivity {
         entradaSenhaCadastro = findViewById(R.id.editSenhaCadastro);
     }
     public void onClickLogin(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
