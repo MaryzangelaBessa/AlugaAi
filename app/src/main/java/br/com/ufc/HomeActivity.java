@@ -1,6 +1,9 @@
 package br.com.ufc;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,5 +21,10 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
+    }
+
+    public void onCLickCreateCadastro(View view){
+        Intent intent = new Intent(this, AddEditarActivity.class);
+        startActivity(intent);
     }
 }
