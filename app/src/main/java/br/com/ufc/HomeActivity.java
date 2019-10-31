@@ -14,7 +14,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.principal_layout);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onCLickCreateCadastro(View view){
-        Intent intent = new Intent(this, AddEditarActivity.class);
+        Intent intent = new Intent(this, AddEditarImovelActivity.class);
         startActivity(intent);
     }
 }

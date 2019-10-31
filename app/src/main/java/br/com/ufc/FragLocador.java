@@ -22,7 +22,7 @@ public class FragLocador extends Fragment {
 
     public void onCLickCreateCadastro(View view){
 
-        Intent intent = new Intent(getActivity(), AddEditarActivity.class);
+        Intent intent = new Intent(getActivity(), AddEditarImovelActivity.class);
         startActivity(intent);
     }
 

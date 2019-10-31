@@ -12,7 +12,7 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".CadastroActivity" />
         <activity
-            android:name=".AddEditarActivity"
+            android:name=".AddEditarImovelActivity"
             android:label="@string/title_activity_addeditar"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
