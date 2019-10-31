@@ -1,4 +1,4 @@
-package br.com.ufc.ui.main;
+package br.com.ufc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import br.com.ufc.HomeActivity;
-import br.com.ufc.R;
 
 public class LoginActivity extends AppCompatActivity {
 

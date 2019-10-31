@@ -1,4 +1,4 @@
-package br.com.ufc.ui.main;
+package br.com.ufc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
-import br.com.ufc.R;
 
 public class CadastroActivity extends AppCompatActivity {
 

@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import br.com.ufc.ui.main.CadastroActivity;
-
 public class MainActivity extends AppCompatActivity {
 
     private EditText entradaEmail, entradaSenha;
