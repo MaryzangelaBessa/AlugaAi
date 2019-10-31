@@ -1,4 +1,4 @@
-package br.com.ufc;
+package br.com.ufc.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,24 +9,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import br.com.ufc.ui.main.CadastroActivity;
+import br.com.ufc.HomeActivity;
+import br.com.ufc.R;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText entradaEmail, entradaSenha;
     private Button botaoEntrar;
     private TextView textView1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-    }
+        inicializarComponentes();
 
-    public void onClickCreateHome(View view){
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 
     private void inicializarComponentes(){
@@ -39,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickCadastro(View view){
         Intent intent = new Intent(this, CadastroActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickCreateHome(View view){
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }
