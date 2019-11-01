@@ -36,7 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
         String email = entradaEmailCadastro.getText().toString();
         String senha = entradaSenhaCadastro.getText().toString();
         Intent intent = new Intent();
-        Usuario usuario = new Usuario("gui","gui", "123");
+        Usuario usuario = new Usuario(nome, email, senha);
 
         usuarioDAO.addUsuario(usuario);
         setResult(Constants.RESULT_ADD, intent );
