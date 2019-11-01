@@ -10,9 +10,5 @@ public interface UsuarioDAO {
     public void editUsuario( Usuario c );
     public void deleteUsuario( int contatoId );
     public Usuario getUsuario( String email );
-
     public ArrayList<Usuario> getListaUsuario();
-
-
-
 }

@@ -31,9 +31,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCreateHome(View view){
+
         String email = entradaEmail.getText().toString();
         String senha = entradaSenha.getText().toString();
         Intent intent;
+
         if(usuarioDAO.getUsuario(email).getSenha().equals(senha)){
             intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         botaoEntrar = findViewById(R.id.btEntrarID);
         textView1 = findViewById(R.id.textView);
     }
-
 
     public void onClickCadastro(View view){
         Intent intent = new Intent(this, CadastroActivity.class);
