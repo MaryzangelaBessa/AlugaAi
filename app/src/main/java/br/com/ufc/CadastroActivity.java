@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import br.com.ufc.data.UsuarioDAO;
+import br.com.ufc.data.UsuarioDBMemory;
+import br.com.ufc.transactions.Constants;
+import br.com.ufc.transactions.Usuario;
+
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText entradaNomeCadastro, entradaEmailCadastro, entradaSenhaCadastro;
+    private UsuarioDAO usuarioDAO;
 
 
     @Override
@@ -17,6 +23,7 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro_layout);
         inicializarComponentes();
+        usuarioDAO = UsuarioDBMemory.getInstance();
     }
 
     private void inicializarComponentes(){
@@ -25,8 +32,15 @@ public class CadastroActivity extends AppCompatActivity {
         entradaSenhaCadastro = findViewById(R.id.editSenhaCadastro);
     }
     public void onClickLogin(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        String nome = entradaNomeCadastro.getText().toString();
+        String email = entradaEmailCadastro.getText().toString();
+        String senha = entradaSenhaCadastro.getText().toString();
+        Intent intent = new Intent();
+        Usuario usuario = new Usuario("gui","gui", "123");
+
+        usuarioDAO.addUsuario(usuario);
+        setResult(Constants.RESULT_ADD, intent );
+        finish();
     }
 
 }
