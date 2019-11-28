@@ -60,6 +60,7 @@
             android:id="@+id/btEntrarID"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal|center_vertical"
             android:layout_margin="15dp"
             android:background="#FFE4E1E1"
             android:gravity="center|center_horizontal|center_vertical"
@@ -73,10 +74,11 @@
             android:id="@+id/textView"
             android:layout_width="300dp"
             android:layout_height="25dp"
-            android:background="#C0C7F0"
+            android:layout_gravity="clip_horizontal|clip_vertical|center_horizontal|center_vertical"
             android:gravity="center|center_horizontal|center_vertical"
             android:onClick="onClickCadastro"
             android:text="Cadastrar"
+            android:textColor="#A9D1F5"
             android:textSize="18sp" />
 
     </LinearLayout>
