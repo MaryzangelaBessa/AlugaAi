@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF00"
+    android:background="#FFFFFF"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
-    android:visibility="visible"
-    >
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +16,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textNome"
             android:layout_width="182dp"
             android:layout_height="89dp"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center|center_horizontal|center_vertical"
             android:text="AlugaAi"
             android:textColor="#000000"
             android:textSize="50sp"
@@ -27,11 +29,11 @@
             tools:layout_editor_absoluteY="106dp" />
 
         <EditText
-            android:id="@+id/editEmailCadastro"
+            android:id="@+id/editEmail"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_margin="15dp"
-            android:background="#ffFFFFFF"
+            android:background="#E4E1E1"
             android:ems="10"
             android:hint="Email "
             android:inputType="textPersonName"
@@ -41,11 +43,11 @@
             tools:layout_editor_absoluteY="281dp" />
 
         <EditText
-            android:id="@+id/editSenhaCadastro"
+            android:id="@+id/editSenha"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_margin="15dp"
-            android:background="#ffFFFFFF"
+            android:background="#FFE4E1E1"
             android:ems="10"
             android:hint="Senha "
             android:inputType="textPassword"
@@ -59,7 +61,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:background="#ffFFFFFF"
+            android:background="#FFE4E1E1"
             android:gravity="center|center_horizontal|center_vertical"
             android:onClick="onClickCreateHome"
             android:paddingLeft="15dp"
@@ -71,6 +73,7 @@
             android:id="@+id/textView"
             android:layout_width="300dp"
             android:layout_height="25dp"
+            android:background="#C0C7F0"
             android:gravity="center|center_horizontal|center_vertical"
             android:onClick="onClickCadastro"
             android:text="Cadastrar"

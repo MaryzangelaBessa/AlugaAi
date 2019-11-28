@@ -36,4 +36,181 @@
 
     <include layout="@layout/content_add_editar_imovel_layout" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/buttonCadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textNome2"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="Cadastrar Imóvel"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="106dp" />
+
+            <EditText
+                android:id="@+id/editNomeProprietario"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_margin="10dp"
+                android:background="#E4E1E1"
+                android:ems="10"
+                android:gravity="center|center_horizontal|left|center_vertical"
+                android:hint="Nome Proprietario"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp" />
+
+            <EditText
+                android:id="@+id/editTelefone"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_margin="10dp"
+                android:background="#E4E1E1"
+                android:ems="10"
+                android:gravity="center|center_horizontal|left|center_vertical"
+                android:hint="Telefone"
+                android:inputType="number"
+                android:paddingLeft="15dp" />
+
+            <EditText
+                android:id="@+id/editTipo"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_margin="10dp"
+                android:background="#E4E1E1"
+                android:ems="10"
+                android:gravity="center|center_horizontal|left|center_vertical"
+                android:hint="Casa ou Apartamento"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:id="@+id/editPreco"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editValor"
+                    android:layout_width="167dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:background="#E4E1E1"
+                    android:ems="10"
+                    android:gravity="center|center_horizontal|left|center_vertical"
+                    android:hint="Preço"
+                    android:inputType="number"
+                    android:paddingLeft="15dp" />
+
+                <EditText
+                    android:id="@+id/editTempo"
+                    android:layout_width="167dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:background="#E4E1E1"
+                    android:ems="10"
+                    android:gravity="center|center_horizontal|left|center_vertical"
+                    android:hint="Tempo"
+                    android:inputType="number"
+                    android:paddingLeft="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="421dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editQtdBanheiro"
+                    android:layout_width="167dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:background="#E4E1E1"
+                    android:ems="10"
+                    android:gravity="center|center_horizontal|left|center_vertical"
+                    android:hint="Banheiros"
+                    android:inputType="number"
+                    android:paddingLeft="15dp" />
+
+                <EditText
+                    android:id="@+id/editQtdQuarto"
+                    android:layout_width="167dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:background="#E4E1E1"
+                    android:ems="10"
+                    android:gravity="center|center_horizontal|left|center_vertical"
+                    android:hint="Quartos"
+                    android:inputType="number"
+                    android:paddingLeft="15dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editGaragem"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_margin="10dp"
+                android:background="#E4E1E1"
+                android:ems="10"
+                android:gravity="center|center_horizontal|left|center_vertical"
+                android:hint="Possui Garagem?"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp" />
+
+            <LinearLayout
+                android:layout_width="358dp"
+                android:layout_height="103dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="168dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/buttonAdicionarFoto"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:onClick="onClickImagem"
+                    android:text="Adicionar Fotos" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonCadastrarImovel"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:onClick="onClickCadastroImovel"
+                android:text="Cadastrar" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

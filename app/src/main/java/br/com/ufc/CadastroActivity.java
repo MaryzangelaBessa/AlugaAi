@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.ufc.data.UsuarioDAO;
 import br.com.ufc.data.UsuarioDBMemory;
@@ -27,20 +28,27 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void inicializarComponentes(){
-        entradaNomeCadastro = findViewById(R.id.editNomeCadastro);
-        entradaEmailCadastro = findViewById(R.id.editEmailCadastro);
-        entradaSenhaCadastro = findViewById(R.id.editSenhaCadastro);
+        entradaNomeCadastro = findViewById(R.id.editNome);
+        entradaEmailCadastro = findViewById(R.id.editEmail);
+        entradaSenhaCadastro = findViewById(R.id.editSenha);
     }
     public void onClickLogin(View view){
         String nome = entradaNomeCadastro.getText().toString();
         String email = entradaEmailCadastro.getText().toString();
         String senha = entradaSenhaCadastro.getText().toString();
-        Intent intent = new Intent();
-        Usuario usuario = new Usuario(nome, email, senha);
 
-        usuarioDAO.addUsuario(usuario);
-        setResult(Constants.RESULT_ADD, intent );
-        finish();
+        if(nome.equals("") || email.equals("") || senha.equals("")){
+            Toast.makeText( this,"Os campos não podem ser nulos!",
+                    Toast.LENGTH_SHORT).show();
+        }else {
+
+            Intent intent = new Intent();
+            Usuario usuario = new Usuario(nome, email, senha);
+
+            usuarioDAO.addUsuario(usuario);
+            setResult(Constants.RESULT_ADD, intent);
+            finish();
+        }
     }
 
 }
