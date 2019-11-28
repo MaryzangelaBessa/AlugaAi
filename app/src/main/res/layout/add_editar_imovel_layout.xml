@@ -198,7 +198,15 @@
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:onClick="onClickImagem"
-                    android:text="Adicionar Fotos" />
+                    android:text="Galeria" />
+
+                <Button
+                    android:id="@+id/buttonTirarFoto"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickCamera"
+                    android:text="Camera" />
 
             </LinearLayout>
 

@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 public class AddEditarImovelActivity extends AppCompatActivity {
 
@@ -48,20 +49,37 @@ public class AddEditarImovelActivity extends AppCompatActivity {
             escolherImagem();
         }
     }
-
-    public void onClickCadastroImovel(View view){
-        Intent intent = new Intent(this, FragLocador.class);
-        startActivity(intent);
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void onClickCamera(View view){
+        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},0);
+        }else{
+            tirarFoto();
+        }
     }
+    public void tirarFoto(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, 1000);
+    }
+
+
     private void escolherImagem() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent .setType("image/*");
-        startActivityForResult(intent, 1000);
+        startActivityForResult(intent, 1001);
+        //getApplicationContext().startActivity(intent);
+    }
+    public void onActivityContextResult(){
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == 1000 ){
+            Bundle extras = data.getExtras();
+            Bitmap imagem = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imagem);
+        }else if(resultCode == RESULT_OK && requestCode == 1001 ){
             imageView.setImageURI(data.getData());
         }
     }
@@ -92,6 +110,18 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         buttonCadastrar = findViewById(R.id.buttonCadastrarImovel);
     }
 
+    public void onClickCadastroImovel(View view){
+        String nomeDono;
+        String telefone;
+        String tipo;
+        float valor;
+        int tempo;
+        int quantidadeQuarto;
+        int getQuantidadeBanheiro;
+        boolean garagem;
 
+        Intent intent = new Intent(this, FragLocador.class);
+        startActivity(intent);
+    }
 
 }
