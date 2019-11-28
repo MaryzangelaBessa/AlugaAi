@@ -52,7 +52,7 @@
             android:hint="Senha "
             android:inputType="textPassword"
             android:paddingLeft="15dp"
-            android:textColor="#00000000"
+            android:textColor="@android:color/background_dark"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="341dp" />
 

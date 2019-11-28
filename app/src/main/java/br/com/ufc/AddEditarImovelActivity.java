@@ -67,7 +67,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent .setType("image/*");
         startActivityForResult(intent, 1001);
-        //getApplicationContext().startActivity(intent);
+
     }
     public void onActivityContextResult(){
 
@@ -93,6 +93,8 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(this, "Permissão Negada!", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case 1000:
                 break;
         }
     }
