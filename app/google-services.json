@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "194655658438",
+    "firebase_url": "https://aluga-ai-b437b.firebaseio.com",
+    "project_id": "aluga-ai-b437b",
+    "storage_bucket": "aluga-ai-b437b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194655658438:android:269e0f34030665309f92c7",
+        "android_client_info": {
+          "package_name": "br.com.ufc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194655658438-vr3c7irm0efviinffd4pmbtq30mq3nh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoKhuqppAIIVwlGioSDdRdW5OrbpdRNkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194655658438-vr3c7irm0efviinffd4pmbtq30mq3nh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

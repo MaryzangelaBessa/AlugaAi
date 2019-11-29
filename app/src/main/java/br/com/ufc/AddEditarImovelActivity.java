@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,19 +26,57 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+
 public class AddEditarImovelActivity extends AppCompatActivity {
 
     public ImageView imageView;
     public Button button;
     public Button buttonCadastrar;
-    public EditText editNomeP, editTipo, editGaragem, editTelefone, editPreco, editTempo, editBanheiros, editQuartos;
-
+    public EditText editNomeP,editTelefone, editPreco, editTempo, editBanheiros, editQuartos;
+    public RadioGroup radioGroup;
+    public Switch editGaragem;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_editar_imovel_layout);
         Intent intent;
         inicializarComponentes();
+
+
+        Button btn = findViewById(R.id.buttonCadastrarImovel);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nomeDono = editNomeP.getText().toString();
+                String telefone = editTelefone.getText().toString();
+                int tipo = radioGroup.getCheckedRadioButtonId();
+                double valor = Double.parseDouble(editPreco.getText().toString());
+                int tempo = Integer.parseInt(editTempo.getText().toString());
+                int quantidadeQuarto = Integer.parseInt(editQuartos.getText().toString());;
+                int getQuantidadeBanheiro = Integer.parseInt(editBanheiros.getText().toString());;
+                boolean garagem = editGaragem.getFreezesText();
+
+
+                HashMap<String,Object> imovel = new HashMap<String, Object>();
+                imovel.put("nomeProprietario", nomeDono);
+                imovel.put("nomeTelefone", telefone);
+                imovel.put("nomeTipo", tipo);
+                imovel.put("nomeValor", valor);
+                imovel.put("nomeTempo", tempo);
+                imovel.put("quantidadeCarros", quantidadeQuarto);
+                imovel.put("quantidadeBanheiros", getQuantidadeBanheiro);
+                imovel.put("garagem",garagem);
+
+                db.collection("imovel").add(imovel);
+
+                finish();
+            }
+        });
 
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -100,7 +140,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
     }
     public void inicializarComponentes(){
         editNomeP = findViewById(R.id.editNomeProprietario);
-        editTipo = findViewById(R.id.editTipo);
+        radioGroup = findViewById(R.id.radioGroup);
         editGaragem = findViewById(R.id.editGaragem);
         editTelefone = findViewById(R.id.editTelefone);
         editPreco = findViewById(R.id.editValor);
@@ -112,18 +152,6 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         buttonCadastrar = findViewById(R.id.buttonCadastrarImovel);
     }
 
-    public void onClickCadastroImovel(View view){
-        String nomeDono;
-        String telefone;
-        String tipo;
-        float valor;
-        int tempo;
-        int quantidadeQuarto;
-        int getQuantidadeBanheiro;
-        boolean garagem;
 
-        Intent intent = new Intent(this, FragLocador.class);
-        startActivity(intent);
-    }
 
 }

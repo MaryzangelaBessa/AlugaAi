@@ -88,18 +88,23 @@
                 android:inputType="number"
                 android:paddingLeft="15dp" />
 
-            <EditText
-                android:id="@+id/editTipo"
-                android:layout_width="350dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_margin="10dp"
-                android:background="#E4E1E1"
-                android:ems="10"
-                android:gravity="center|center_horizontal|left|center_vertical"
-                android:hint="Casa ou Apartamento"
-                android:inputType="textPersonName"
-                android:paddingLeft="15dp" />
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="201dp"
+                android:layout_height="89dp">
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RadioButton" />
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RadioButton" />
+            </RadioGroup>
 
             <LinearLayout
                 android:id="@+id/editPreco"
@@ -169,18 +174,11 @@
                     android:paddingLeft="15dp" />
             </LinearLayout>
 
-            <EditText
+            <Switch
                 android:id="@+id/editGaragem"
                 android:layout_width="350dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_margin="10dp"
-                android:background="#E4E1E1"
-                android:ems="10"
-                android:gravity="center|center_horizontal|left|center_vertical"
-                android:hint="Possui Garagem?"
-                android:inputType="textPersonName"
-                android:paddingLeft="15dp" />
+                android:layout_height="wrap_content"
+                android:text="Possui Garagem" />
 
             <LinearLayout
                 android:layout_width="358dp"
@@ -214,7 +212,6 @@
                 android:id="@+id/buttonCadastrarImovel"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:onClick="onClickCadastroImovel"
                 android:text="Cadastrar" />
 
         </LinearLayout>

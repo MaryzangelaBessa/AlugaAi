@@ -4,6 +4,7 @@ import android.widget.ImageView;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Imovel {
 
@@ -13,10 +14,11 @@ public class Imovel {
     private String tipo;
     private float valor;
     private int tempo; // em dias
-    private ArrayList<ImageView> fotos;
+    private List<String> fotos;
     private int quantidadeQuarto;
     private int getQuantidadeBanheiro;
     private boolean garagem;
+    private String endereço;
     // Falta os atributos localização, avaliação, lista de reserva
 
 
@@ -31,10 +33,9 @@ public class Imovel {
         this.quantidadeQuarto = quantidadeQuarto;
         this.getQuantidadeBanheiro = getQuantidadeBanheiro;
         this.garagem = garagem;
-        this.fotos = new ArrayList<ImageView>();
     }
 
-    public void addImagem(ImageView foto){
+    public void addImagem(String foto){
         fotos.add(foto);
     }
     public String getNomeDono() {
@@ -68,15 +69,6 @@ public class Imovel {
     public void setTempo(int tempo) {
         this.tempo = tempo;
     }
-
-    public ArrayList<ImageView> getFotos() {
-        return fotos;
-    }
-
-    public void setFotos(ArrayList<ImageView> fotos) {
-        this.fotos = fotos;
-    }
-
 
     public Long getId() {
         return id;

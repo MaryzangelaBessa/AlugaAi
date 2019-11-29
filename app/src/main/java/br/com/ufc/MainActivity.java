@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
             if (usuarioDAO.getUsuario(email).getSenha().equals(senha)) {
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
+                finish();
             } else {
                 intent = new Intent(this, CadastroActivity.class);
                 startActivity(intent);
+                finish();
             }
         }
     }
