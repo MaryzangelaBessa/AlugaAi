@@ -90,20 +90,21 @@
 
             <RadioGroup
                 android:id="@+id/radioGroup"
-                android:layout_width="201dp"
-                android:layout_height="89dp">
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+                android:gravity="center|left">
 
                 <RadioButton
                     android:id="@+id/radioButton2"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Apartamento" />
 
                 <RadioButton
                     android:id="@+id/radioButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Casa" />
             </RadioGroup>
 
             <LinearLayout
@@ -187,25 +188,32 @@
 
                 <ImageView
                     android:id="@+id/iv"
-                    android:layout_width="168dp"
+                    android:layout_width="167dp"
                     android:layout_height="100dp"
                     android:layout_weight="1" />
 
-                <Button
-                    android:id="@+id/buttonAdicionarFoto"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:onClick="onClickImagem"
-                    android:text="Galeria" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/buttonTirarFoto"
-                    android:layout_width="100dp"
+                    android:layout_width="167dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:onClick="onClickCamera"
                     android:text="Camera" />
 
+                <Button
+                    android:id="@+id/buttonAdicionarFoto"
+                    android:layout_width="167dp"
+                    android:layout_height="40dp"
+                    android:onClick="onClickImagem"
+                    android:text="Galeria" />
             </LinearLayout>
 
             <Button
