@@ -135,6 +135,11 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 }
                 break;
             case 1000:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    tirarFoto();
+                }else{
+                    Toast.makeText(this, "Permissão Negada!", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }

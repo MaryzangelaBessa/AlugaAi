@@ -64,21 +64,20 @@
             android:layout_margin="15dp"
             android:background="#FFE4E1E1"
             android:gravity="center|center_horizontal|center_vertical"
-            android:onClick="onClickCreateHome"
             android:paddingLeft="15dp"
             android:text="Entrar"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="446dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textCadastrar"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_gravity="clip_horizontal|clip_vertical|center_horizontal|center_vertical"
             android:gravity="center|center_horizontal|center_vertical"
             android:onClick="onClickCadastro"
             android:text="Cadastrar"
-            android:textColor="#A9D1F5"
+            android:textColor="#207AE6"
             android:textSize="18sp" />
 
     </LinearLayout>

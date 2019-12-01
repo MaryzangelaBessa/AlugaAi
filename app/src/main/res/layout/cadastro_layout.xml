@@ -68,16 +68,23 @@
             tools:layout_editor_absoluteY="341dp" />
 
         <Button
-            android:id="@+id/btEntrarID"
-            android:layout_width="300dp"
+            android:id="@+id/bttCadastrar"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="#E4E1E1"
-            android:onClick="onClickLogin"
+            android:onClick="onClickCadastrar"
             android:paddingLeft="15dp"
             android:text="Cadastrar"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="446dp" />
+
+        <Button
+            android:id="@+id/buttonVoltar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:text="Cancelar" />
 
 
     </LinearLayout>
