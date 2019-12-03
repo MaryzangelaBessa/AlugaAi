@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 import br.com.ufc.data.UsuarioDAO;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroUserActivity extends AppCompatActivity {
 
     private EditText entradaNomeCadastro, entradaEmailCadastro, entradaSenhaCadastro;
     private Button botaoVoltar, botaoCadastrar;
@@ -33,7 +33,7 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cadastro_layout);
+        setContentView(R.layout.cadastro_user_layout);
         inicializarComponentes();
         eventoClick();
         auth = FirebaseAuth.getInstance();
@@ -63,7 +63,7 @@ public class CadastroActivity extends AppCompatActivity {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("==========", "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(getApplicationContext(), "Authentication failed.",
+                    Toast.makeText(getApplicationContext(), "Authentication failed. " + task.getException().getMessage(),
                             Toast.LENGTH_SHORT).show();
                     //updateUI(null);
                 }
@@ -90,7 +90,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
     private void alert(String msg){
-        Toast.makeText(CadastroActivity.this, msg, Toast.LENGTH_LONG);
+        Toast.makeText(CadastroUserActivity.this, msg, Toast.LENGTH_LONG);
     }
     @Override
     protected void onStart() {

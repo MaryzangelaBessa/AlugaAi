@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickCadastro(View view){
-        Intent intent = new Intent(getApplicationContext(), CadastroActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CadastroUserActivity.class);
         startActivity(intent);
     }
 }
