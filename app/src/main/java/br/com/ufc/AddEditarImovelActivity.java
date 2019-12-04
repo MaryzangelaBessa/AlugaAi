@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import br.com.ufc.transactions.LineAdpater;
+import br.com.ufc.adapters.LineAdpater;
 import br.com.ufc.ui.main.AddImagemImovel;
 
 public class AddEditarImovelActivity extends AppCompatActivity {

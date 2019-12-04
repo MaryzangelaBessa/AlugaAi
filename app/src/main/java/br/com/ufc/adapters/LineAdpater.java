@@ -1,4 +1,4 @@
-package br.com.ufc.transactions;
+package br.com.ufc.adapters;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import br.com.ufc.R;
+import br.com.ufc.transactions.LineHolder;
 
 public class LineAdpater extends RecyclerView.Adapter<LineHolder> {
     private final ArrayList<Uri> imgs;
