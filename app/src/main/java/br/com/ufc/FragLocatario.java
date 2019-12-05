@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class FragLocatario extends Fragment {
 
     private RecyclerView recyclerView;
     private List<Imovel> listaImoveis = new ArrayList<>();
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,56 +55,67 @@ public class FragLocatario extends Fragment {
 
     public void getImoveis(){
 
-        Imovel imovel = new Imovel("Rua do Sossego", 500f, "Casa");
-        listaImoveis.add(imovel);
 
-        imovel = new Imovel("Rua Oscar Barbosa", 600f, "Casa");
-        listaImoveis.add(imovel);
+        CollectionReference imoveis = db.collection("imovel");
 
-        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
-        listaImoveis.add(imovel);
 
-        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
-        listaImoveis.add(imovel);
 
-        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
-        listaImoveis.add(imovel);
+//        List<Imovel> imoveis = (List<Imovel>) db.collection("imovel");
 
-        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
-        listaImoveis.add(imovel);
+//        for (Imovel imovel: imoveis) {
+//            listaImoveis.add(imovel);
+//        }
 
-        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
-        listaImoveis.add(imovel);
-
-        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
-        listaImoveis.add(imovel);
+//        Imovel imovel = new Imovel("Rua do Sossego", 500f, "Casa");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Rua Oscar Barbosa", 600f, "Casa");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 3", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 4", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
+//
+//        imovel = new Imovel("Endereço 5", 123f, "Apartamento");
+//        listaImoveis.add(imovel);
     }
 
 
