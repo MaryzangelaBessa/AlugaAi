@@ -214,6 +214,13 @@
                 android:layout_height="50dp"
                 android:text="Cadastrar" />
 
+            <Button
+                android:id="@+id/buttonteste"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClickPeril"
+                android:text="Button" />
+
         </LinearLayout>
 
     </LinearLayout>

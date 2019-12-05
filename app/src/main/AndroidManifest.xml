@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Perfil_Usuario"></activity>
         <activity android:name=".CadastroUserActivity" />
-        <activity android:name=".ui.main.AddImagemImovel"></activity>
+        <activity android:name=".ui.main.AddImagemImovel" />
         <activity android:name=".CadastroActivity" />
         <activity
             android:name=".AddEditarImovelActivity"

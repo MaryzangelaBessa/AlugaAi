@@ -64,9 +64,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_editar_imovel_layout);
-        Intent intent;
         inicializarComponentes();
-
         mauthlistener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -133,6 +131,10 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         });
 
     }
+    public void onClickPeril(View view){
+        Intent intent = new Intent(this, Perfil_Usuario.class);
+        startActivity(intent);
+    }
 
 
     public void inicializarComponentes(){
@@ -157,7 +159,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         buttonCadastrar = findViewById(R.id.buttonCadastrarImovel);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mArrayUri = new ArrayList<Uri>();
-
+        Button buttonteste = (Button) findViewById(R.id.buttonteste);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -254,5 +256,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mauthlistener);
 
+    }
 }

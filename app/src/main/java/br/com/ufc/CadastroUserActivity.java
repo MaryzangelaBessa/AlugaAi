@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -99,7 +100,6 @@ public class CadastroUserActivity extends AppCompatActivity {
 
         db.collection("usuario").add(usuario);
 
-
     }
     private void eventoClick(){
         botaoVoltar.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +116,7 @@ public class CadastroUserActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         db = FirebaseFirestore.getInstance();
-        storageReference = storage.getReference().child("Foto Perfil");
+        storageReference = storage.getReference().child("FotoPerfil");
 
         //Layout
         entradaNomeCadastro = findViewById(R.id.editNome);
@@ -185,7 +185,7 @@ public class CadastroUserActivity extends AppCompatActivity {
             imagem.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] bytes = byteArrayOutputStream.toByteArray();
 
-            StorageReference foto = storageReference.child("images/" + entradaNomeCadastro.getText().toString() + auth.getUid());
+            StorageReference foto = storageReference.child("images/" + auth.getUid());
             UploadTask uploadTask = foto.putBytes(bytes);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -202,7 +202,7 @@ public class CadastroUserActivity extends AppCompatActivity {
         }else if(resultCode == RESULT_OK && requestCode == 1001 ){
 
             Uri imagem = data.getData();
-            StorageReference foto = storageReference.child("images/" + entradaNomeCadastro.getText().toString() + auth.getUid());
+            StorageReference foto = storageReference.child("images/" + auth.getUid());
             UploadTask uploadTask = foto.putFile(imagem);
 
             uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -219,6 +219,11 @@ public class CadastroUserActivity extends AppCompatActivity {
 
             imageView.setImageURI(data.getData());
         }
+        HashMap<String, Object> imgs = new HashMap<String, Object>();
+        imgs.put("idDono", auth.getUid());
+        imgs.put("caminhoImagem","images/" + auth.getUid() );
+        //DatabaseReference ref = db.
+        db.collection("fotosPerfil").add(imgs);
     }
 
     @Override
