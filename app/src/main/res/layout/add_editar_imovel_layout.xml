@@ -201,17 +201,9 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/buttonTirarFoto"
-                    android:layout_width="167dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:onClick="onClickCamera"
-                    android:text="Camera" />
-
-                <Button
                     android:id="@+id/buttonAdicionarFoto"
-                    android:layout_width="167dp"
-                    android:layout_height="40dp"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
                     android:onClick="onClickImagem"
                     android:text="Galeria" />
             </LinearLayout>

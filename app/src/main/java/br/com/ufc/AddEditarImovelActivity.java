@@ -25,7 +25,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,12 +50,16 @@ public class AddEditarImovelActivity extends AppCompatActivity {
     public RadioGroup radioGroup;
     public RecyclerView recyclerView;
     public Switch editGaragem;
-    public int PICK_IMAGE_MULTIPLE = 1;
     public String imageEncoded;
-    ArrayList<Uri> mArrayUri;
+    public ArrayList<Uri> mArrayUri;
     public List<String> imagesEncodedList;
-    private LineAdpater adpater;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public LineAdpater adpater;
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();private FirebaseAuth auth;
+    public FirebaseStorage storage;
+    public StorageReference storageReference;
+    public FirebaseAuth.AuthStateListener mauthlistener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +67,17 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         Intent intent;
         inicializarComponentes();
 
-
+        mauthlistener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null){
+                    Log.d("AUTH", "signed_in:" + user.getUid());
+                }else {
+                    Log.d("AUTH", "signed_out:");
+                }
+            }
+        };
         Button btn = findViewById(R.id.buttonCadastrarImovel);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +93,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
 
 
                 HashMap<String,Object> imovel = new HashMap<String, Object>();
+                imovel.put("idDono", auth.getUid());
                 imovel.put("nomeProprietario", nomeDono);
                 imovel.put("nomeTelefone", telefone);
                 imovel.put("nomeTipo", tipo);
@@ -80,12 +102,61 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 imovel.put("quantidadeCarros", quantidadeQuarto);
                 imovel.put("quantidadeBanheiros", getQuantidadeBanheiro);
                 imovel.put("garagem",garagem);
-
                 db.collection("imovel").add(imovel);
 
+                HashMap<String,Object> imagens = new HashMap<String, Object>();
+                ArrayList<String> imgs = new ArrayList<String>();
+                for(int i= 0; i < mArrayUri.size();i++){
+
+                    Uri imagem = mArrayUri.get(i);
+                    StorageReference foto = storageReference.child("images/imoveis"  + auth.getUid() + imagem.getLastPathSegment());
+                    UploadTask uploadTask = foto.putFile(imagem);
+                    String caminho = "images/imoveis" + auth.getUid() + imagem.getLastPathSegment();
+                    imgs.add(caminho);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("LOG_TAG","FALHOU");
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Log.d("LOG_TAG","SUCESSO");
+                        }
+                    });
+                }
+                imagens.put("idDono", auth.getUid());
+                imagens.put("caminhoImagem", imgs);
+                db.collection("imagensImoveis").add(imagens);
                 finish();
             }
         });
+
+    }
+
+
+    public void inicializarComponentes(){
+        //Firebase
+
+        auth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        db = FirebaseFirestore.getInstance();
+        storageReference = storage.getReference().child("Imoveis");
+
+        //layout
+
+        editNomeP = findViewById(R.id.editNomeProprietario);
+        radioGroup = findViewById(R.id.radioGroup);
+        editGaragem = findViewById(R.id.editGaragem);
+        editTelefone = findViewById(R.id.editTelefone);
+        editPreco = findViewById(R.id.editValor);
+        editTempo = findViewById(R.id.editTempo);
+        editBanheiros = findViewById(R.id.editQtdBanheiro);
+        editQuartos = findViewById(R.id.editQtdQuarto);
+        button = findViewById(R.id.buttonAdicionarFoto);
+        buttonCadastrar = findViewById(R.id.buttonCadastrarImovel);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mArrayUri = new ArrayList<Uri>();
 
     }
 
@@ -99,19 +170,6 @@ public class AddEditarImovelActivity extends AppCompatActivity {
             escolherImagem();
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void onClickCamera(View view){
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},0);
-        }else{
-            tirarFoto();
-        }
-    }
-    public void tirarFoto(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 1000);
-    }
-
 
     private void escolherImagem() {
         Intent intent = new Intent();
@@ -122,16 +180,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
 
     }
 /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode == RESULT_OK && requestCode == 1000 ){
-            Bundle extras = data.getExtras();
-            Bitmap imagem = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imagem);
-        }else if(resultCode == RESULT_OK && requestCode == 1001 ){
-            imageView.setImageURI(data.getData());
-        }
-    }
+
 
 */
 @Override
@@ -140,20 +189,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     try {
 
         // When an Image is picked
-        if (requestCode == 1001 && resultCode == RESULT_OK
-                && null != data) {
-            // Get the Image from data
-
+        if (requestCode == 1001 && resultCode == RESULT_OK  && null != data) {
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
             imagesEncodedList = new ArrayList<String>();
+
             if(data.getData()!=null){
-
                 Uri mImageUri=data.getData();
-
-                // Get the cursor
-                Cursor cursor = getContentResolver().query(mImageUri,
-                        filePathColumn, null, null, null);
-                // Move to first row
+                Cursor cursor = getContentResolver().query(mImageUri, filePathColumn, null, null, null);
                 cursor.moveToFirst();
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -177,28 +219,25 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                         imageEncoded  = cursor.getString(columnIndex);
                         imagesEncodedList.add(imageEncoded);
                         cursor.close();
-
                     }
                     Log.v("LOG_TAG", "Selected Images" + mArrayUri.size());
                 }
             }
-
         } else {
             Toast.makeText(this, "You haven't picked Image",
                     Toast.LENGTH_LONG).show();
         }
-
     } catch (Exception e) {
         Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
                 .show();
     }finally {
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         adpater = new LineAdpater(mArrayUri);
         recyclerView.setAdapter(adpater);
 
     }
-
     super.onActivityResult(requestCode, resultCode, data);
 }
     @Override
@@ -211,37 +250,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                     Toast.makeText(this, "Permissão Negada!", Toast.LENGTH_LONG).show();
                 }
                 break;
-            case 1000:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    tirarFoto();
-                }else{
-                    Toast.makeText(this, "Permissão Negada!", Toast.LENGTH_LONG).show();
-                }
-                break;
         }
     }
 
-
-    public void inicializarComponentes(){
-        editNomeP = findViewById(R.id.editNomeProprietario);
-        radioGroup = findViewById(R.id.radioGroup);
-        editGaragem = findViewById(R.id.editGaragem);
-        editTelefone = findViewById(R.id.editTelefone);
-        editPreco = findViewById(R.id.editValor);
-        editTempo = findViewById(R.id.editTempo);
-        editBanheiros = findViewById(R.id.editQtdBanheiro);
-        editQuartos = findViewById(R.id.editQtdQuarto);
-        //imageView = findViewById(R.id.iv);
-        button = findViewById(R.id.buttonAdicionarFoto);
-        buttonCadastrar = findViewById(R.id.buttonCadastrarImovel);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mArrayUri = new ArrayList<Uri>();
-
-    }
-    public void onClickAddImagens(View view){
-        Intent intent = new Intent(getApplicationContext(), AddImagemImovel.class);
-        startActivity(intent);
-    }
 
 
 }
