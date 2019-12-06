@@ -23,7 +23,7 @@ public class Imovel {
     private int quantidadeQuarto;
     private int quantidadeBanheiro;
     private boolean garagem;
-
+/*
     public Imovel(String idDono, String nomeProprietario, String nomeTelefone, String tipo, float nomeValor,
                   int nomeTempo, int quantidadeQuarto, int quantidadeBanheiro, boolean garagem) {
         this.idDono = idDono;
@@ -36,12 +36,12 @@ public class Imovel {
         this.quantidadeBanheiro = quantidadeBanheiro;
         this.garagem = garagem;
     }
-/*
+*/
     public Imovel(String nomeProprietario, float nomeValor, String tipo){
         this.nomeProprietario = nomeProprietario;
         this.nomeValor = nomeValor;
         this.tipo = tipo;
     }
-*/
+
 
 }

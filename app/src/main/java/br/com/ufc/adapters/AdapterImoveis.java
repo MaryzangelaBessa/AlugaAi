@@ -24,10 +24,6 @@ public class AdapterImoveis extends RecyclerView.Adapter<AdapterImoveis.MyViewHo
 
     private List<Imovel> listaImoveis;
 
-    public AdapterImoveis(List<Imovel> lista) {
-        this.listaImoveis = lista;
-    }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,15 +39,20 @@ public class AdapterImoveis extends RecyclerView.Adapter<AdapterImoveis.MyViewHo
 
         Imovel imovel = listaImoveis.get(position);
 
-        holder.endereco.setText(imovel.getEndereco());
-        holder.valor.setText(String.valueOf(imovel.getValor()));
+        holder.endereco.setText(imovel.getNomeProprietario());
+        holder.valor.setText(String.valueOf(imovel.getNomeValor()));
         holder.tipo.setText(imovel.getTipo());
 
     }
 
+    public void setData(List<Imovel> data){
+        this.listaImoveis = data;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return listaImoveis.size();
+        return listaImoveis != null? listaImoveis.size():0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
