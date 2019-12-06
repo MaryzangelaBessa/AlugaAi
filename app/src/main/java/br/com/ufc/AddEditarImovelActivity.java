@@ -29,6 +29,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -54,7 +59,10 @@ public class AddEditarImovelActivity extends AppCompatActivity {
     public ArrayList<Uri> mArrayUri;
     public List<String> imagesEncodedList;
     public LineAdpater adpater;
-    public FirebaseFirestore db = FirebaseFirestore.getInstance();private FirebaseAuth auth;
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public DatabaseReference databaseReference = database.getReference();
+    private FirebaseAuth auth;
     public FirebaseStorage storage;
     public StorageReference storageReference;
     public FirebaseAuth.AuthStateListener mauthlistener;
@@ -97,7 +105,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 imovel.put("nomeTipo", tipo);
                 imovel.put("nomeValor", valor);
                 imovel.put("nomeTempo", tempo);
-                imovel.put("quantidadeCarros", quantidadeQuarto);
+                imovel.put("quantidadeQuartos", quantidadeQuarto);
                 imovel.put("quantidadeBanheiros", getQuantidadeBanheiro);
                 imovel.put("garagem",garagem);
                 db.collection("imovel").add(imovel);
@@ -144,7 +152,19 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         db = FirebaseFirestore.getInstance();
         storageReference = storage.getReference().child("Imoveis");
+/*        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        })
+
+ */
         //layout
 
         editNomeP = findViewById(R.id.editNomeProprietario);
