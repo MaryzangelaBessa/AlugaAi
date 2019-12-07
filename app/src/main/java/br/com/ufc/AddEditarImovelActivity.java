@@ -51,7 +51,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
     public ImageView imageView;
     public Button button,button3;
     public Button buttonCadastrar;
-    public EditText editNomeP,editTelefone, editPreco, editTempo, editBanheiros, editQuartos;
+    public EditText editNomeP,editTelefone, editPreco, editTempo, editBanheiros, editQuartos, editEndereco;
     public RadioGroup radioGroup;
     public RecyclerView recyclerView;
     public Switch editGaragem;
@@ -96,11 +96,14 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 int quantidadeQuarto = Integer.parseInt(editQuartos.getText().toString());;
                 int getQuantidadeBanheiro = Integer.parseInt(editBanheiros.getText().toString());;
                 boolean garagem = editGaragem.getFreezesText();
+                String endereco = editEndereco.getText().toString();
+
 
 
                 HashMap<String,Object> imovel = new HashMap<String, Object>();
                 imovel.put("idDono", auth.getUid());
                 imovel.put("nomeProprietario", nomeDono);
+                imovel.put("nomeEndereco", endereco);
                 imovel.put("nomeTelefone", telefone);
                 imovel.put("nomeTipo", tipo);
                 imovel.put("nomeValor", valor);
@@ -152,24 +155,13 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         db = FirebaseFirestore.getInstance();
         storageReference = storage.getReference().child("Imoveis");
-/*        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        })
-
- */
         //layout
 
         editNomeP = findViewById(R.id.editNomeProprietario);
         radioGroup = findViewById(R.id.radioGroup);
         editGaragem = findViewById(R.id.editGaragem);
+        editEndereco = findViewById(R.id.editEndereco);
         editTelefone = findViewById(R.id.editTelefone);
         editPreco = findViewById(R.id.editValor);
         editTempo = findViewById(R.id.editTempo);
@@ -179,7 +171,6 @@ public class AddEditarImovelActivity extends AppCompatActivity {
         buttonCadastrar = findViewById(R.id.buttonCadastrarImovel);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mArrayUri = new ArrayList<Uri>();
-        Button buttonteste = (Button) findViewById(R.id.buttonteste);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
