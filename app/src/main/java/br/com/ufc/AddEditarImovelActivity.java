@@ -97,7 +97,13 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 int getQuantidadeBanheiro = Integer.parseInt(editBanheiros.getText().toString());;
                 boolean garagem = editGaragem.getFreezesText();
                 String endereco = editEndereco.getText().toString();
+                String tipoB;
+                String garagemB;
 
+                if(tipo == 2131361966) tipoB = "Apartamento";
+                else tipoB = "Casa";
+                if(garagem) garagemB = "Sim";
+                else garagemB = "Não";
 
 
                 HashMap<String,Object> imovel = new HashMap<String, Object>();
@@ -105,12 +111,12 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                 imovel.put("nomeProprietario", nomeDono);
                 imovel.put("nomeEndereco", endereco);
                 imovel.put("nomeTelefone", telefone);
-                imovel.put("nomeTipo", tipo);
+                imovel.put("nomeTipo", tipoB);
                 imovel.put("nomeValor", valor);
                 imovel.put("nomeTempo", tempo);
                 imovel.put("quantidadeQuartos", quantidadeQuarto);
                 imovel.put("quantidadeBanheiros", getQuantidadeBanheiro);
-                imovel.put("garagem",garagem);
+                imovel.put("garagem",garagemB);
                 db.collection("imovel").add(imovel);
 
                 HashMap<String,Object> imagens = new HashMap<String, Object>();
@@ -135,6 +141,7 @@ public class AddEditarImovelActivity extends AppCompatActivity {
                     });
                 }
                 imagens.put("idDono", auth.getUid());
+                imagens.put("nomeEndereco", endereco);
                 imagens.put("caminhoImagem", imgs);
                 db.collection("imagensImoveis").add(imagens);
                 finish();

@@ -52,8 +52,10 @@
             android:id="@+id/proprietario"
             android:layout_width="350dp"
             android:layout_height="40dp"
+            android:padding="5dp"
             android:background="#E4E1E1"
             android:ems="10"
+            android:gravity="center_horizontal|left|center_vertical"
             android:inputType="textPersonName" />
 
         <TextView
@@ -66,8 +68,10 @@
             android:id="@+id/endereco"
             android:layout_width="350dp"
             android:layout_height="40dp"
+            android:padding="5dp"
             android:background="#E4E1E1"
             android:ems="10"
+            android:gravity="center_horizontal|left|center_vertical"
             android:inputType="textPersonName" />
 
         <TextView
@@ -80,8 +84,10 @@
             android:id="@+id/telefone"
             android:layout_width="350dp"
             android:layout_height="40dp"
+            android:padding="5dp"
             android:background="#E4E1E1"
             android:ems="10"
+            android:gravity="center_horizontal|left|center_vertical"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -115,8 +121,10 @@
             android:layout_width="167dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
+            android:padding="5dp"
             android:background="#E4E1E1"
             android:ems="10"
+            android:gravity="center_horizontal|left|center_vertical"
             android:inputType="textPersonName" />
 
         <TextView
@@ -124,8 +132,10 @@
             android:layout_width="167dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
+            android:padding="5dp"
             android:background="#E4E1E1"
             android:ems="10"
+            android:gravity="center_horizontal|left|center_vertical"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -161,7 +171,9 @@
             android:layout_margin="5dp"
             android:background="#E4E1E1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:gravity="center_horizontal|left|center_vertical"
+            android:inputType="textPersonName"
+            android:padding="5dp" />
 
         <TextView
             android:id="@+id/quartos"
@@ -169,8 +181,11 @@
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:background="#E4E1E1"
+            android:padding="5dp"
             android:ems="10"
+            android:gravity="center_horizontal|left|center_vertical"
             android:inputType="textPersonName" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -191,7 +206,9 @@
             android:layout_height="40dp"
             android:background="#E4E1E1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:gravity="center_horizontal|left|center_vertical"
+            android:inputType="textPersonName"
+            android:padding="5dp" />
     </LinearLayout>
 
 </LinearLayout>

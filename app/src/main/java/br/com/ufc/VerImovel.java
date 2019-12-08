@@ -1,56 +1,60 @@
 package br.com.ufc;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
-import br.com.ufc.adapters.LineAdpater;
+import br.com.ufc.adapters.AdpaterImagensImoveis;
+import br.com.ufc.data.ImagensImovel;
 import br.com.ufc.transactions.Imovel;
 
 public class VerImovel extends AppCompatActivity {
 
     Imovel imovel;
-    public LineAdpater adpater;
+    public AdpaterImagensImoveis adpater;
     public FirebaseStorage storage;
     public StorageReference storageReference;
     public FirebaseAuth auth;
     public ArrayList<Uri> mArrayUri;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<ImagensImovel> imagensImovelList;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_imovel);
+
         inicializarComponentes();
-        imovel = (Imovel) getIntent().getParcelableExtra("imovel");
 
-        RecyclerView recyclerView = findViewById(R.id.rc);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
+        startImagens();
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        adpater = new LineAdpater(mArrayUri);
         recyclerView.setAdapter(adpater);
-
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         TextView nomeProprietario = findViewById(R.id.proprietario);
         nomeProprietario.setText(imovel.getNomeProprietario());
@@ -77,33 +81,42 @@ public class VerImovel extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference().child("Imoveis");
-        mArrayUri = new ArrayList<>();
+        mArrayUri = new ArrayList<Uri>();
+        imagensImovelList = new ArrayList<>();
+        imovel = (Imovel) getIntent().getParcelableExtra("imovel");
+        adpater = new AdpaterImagensImoveis();
+        recyclerView = findViewById(R.id.rc);
 
-        db.collection("imoveis").whereEqualTo("idDono",auth.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+    }
+
+    public void startImagens(){
+        db.collection("imagensImoveis").whereEqualTo("idDono",imovel.getIdDono()).whereEqualTo("nomeEndereco", imovel.getEndereco()).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                    
-            }
-        });
 
-        StorageReference foto = storageReference.child("images/imoveis" + auth.getUid());
-        foto.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                mArrayUri.add(uri);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("IMAGEM ERRO", e.getMessage());
+
+                if(e != null){
+                    Log.w("=======", "A escuta falhou");
+                    return;
+                }
+                Gson gson = new Gson();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    JsonElement jsonElement = gson.toJsonTree(documentSnapshot.getData());
+                    ImagensImovel pojo = gson.fromJson(jsonElement,ImagensImovel.class);
+                    imagensImovelList.add(pojo);
+
+                }
+
+                Log.d("======================", imagensImovelList.get(0).getCaminhos().get(0).toString());
+                createData(imagensImovelList.get(0).getCaminhos());
             }
         });
 
 
     }
 
-
-
-
-
+    public void createData(List<String> data){
+        adpater.setData(data);
     }
+
+}
