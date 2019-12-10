@@ -28,7 +28,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -119,14 +118,14 @@ public class CadastroUserActivity extends AppCompatActivity {
         storageReference = storage.getReference().child("FotoPerfil");
 
         //Layout
-        entradaNomeCadastro = findViewById(R.id.editNome);
+        entradaNomeCadastro = findViewById(R.id.editTextNome);
         entradaEmailCadastro = findViewById(R.id.editEmail);
         entradaSenhaCadastro = findViewById(R.id.editSenha);
-        botaoVoltar = (Button) findViewById(R.id.buttonVoltar);
-        botaoCadastrar = (Button) findViewById(R.id.bttCadastrar);
+        botaoVoltar = (Button) findViewById(R.id.btnCancelar);
+        botaoCadastrar = (Button) findViewById(R.id.btnCadastrar);
         buttonCamera = (Button) findViewById(R.id.buttonCamera);
         buttonGaleria = (Button) findViewById(R.id.buttonGaleria);
-        imageView = (ImageView) findViewById(R.id.imageCadastro);
+        imageView = (ImageView) findViewById(R.id.imageViewCadastro);
     }
     private void alert(String msg){
         Toast.makeText(CadastroUserActivity.this, msg, Toast.LENGTH_LONG);
