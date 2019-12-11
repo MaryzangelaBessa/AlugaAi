@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.principal_layout);
         FirebaseApp.initializeApp(HomeActivity.this);
+        auth = FirebaseAuth.getInstance();
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         textEmail = findViewById(R.id.editEmail);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,6 +84,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onCLickLogout(View view){
+        auth.signOut();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -89,7 +94,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //FirebaseUser currentUser = this.auth.getCurrentUser();
     }
 
 }
