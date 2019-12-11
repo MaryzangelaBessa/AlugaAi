@@ -10,4 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_addeditar">Imóvel</string>
+    <string name="menu_actions_editar_perfil">Editar Perfil</string>
+    <string name="menu_actions_action2">Ação 2</string>
+    <string name="menu_actions_action3">Ação 3</string>
 </resources>
