@@ -26,4 +26,9 @@ public class FragLocador extends Fragment {
         startActivity(intent);
     }
 
+    public void onCLickShowCurrentLocation(View view){
+        Intent intent = new Intent(getActivity(), CurrentLocation.class);
+        startActivity(intent);
+    }
+
 }

@@ -66,10 +66,16 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public void onCLickShowCurrentLocation(View view){
+        Intent intent = new Intent(this, CurrentLocation.class);
+        startActivity(intent);
+    }
+
     public void onCLickCreateCadastro(View view){
         Intent intent = new Intent(this, AddEditarImovelActivity.class);
         startActivity(intent);
     }
+
 
     @Override
     protected void onStart() {

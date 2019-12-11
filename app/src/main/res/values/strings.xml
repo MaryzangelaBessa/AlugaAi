@@ -6,6 +6,7 @@
     <string name="title_listImoveis_locatario">Imóveis Disponíveis</string>
     <string name="btn_principal">Principal</string>
     <string name="btn_add">Cadastrar</string>
+    <string name="map_key" translatable="false">AIzaSyDMsugWMETvZ78CoCP5ssnoBLqp5BNL-2Y</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

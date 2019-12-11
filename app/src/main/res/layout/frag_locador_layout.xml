@@ -24,6 +24,14 @@
                 android:layout_height="wrap_content"
                 android:onClick="onCLickCreateCadastro"
                 android:text="@string/btn_add" />
+
+            <Button
+                android:id="@+id/BtnCurrentLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:onClick="onCLickShowCurrentLocation"
+                android:text="Localização Atual" />
         </LinearLayout>
 
         <LinearLayout
