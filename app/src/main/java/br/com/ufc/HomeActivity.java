@@ -52,15 +52,23 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_editProfile:
-                Toast.makeText(this, "Editar Perfil de User", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Localização Atual", Toast.LENGTH_SHORT).show();
+                Intent ittLA = new Intent(this, CurrentLocation.class);
+                startActivity(ittLA);
                 return true;
 
             case R.id.action_2:
-                Toast.makeText(this, "Ação 2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Editar perfil", Toast.LENGTH_SHORT).show();
+                Intent ittPU = new Intent(this, Perfil_Usuario.class);
+                startActivity(ittPU);
                 return true;
 
             case R.id.action_3:
-                Toast.makeText(this, "Ação 3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
+                auth.signOut();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
 
                 default:
