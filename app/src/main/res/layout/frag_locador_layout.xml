@@ -32,6 +32,21 @@
 
                 android:onClick="onCLickShowCurrentLocation"
                 android:text="Localização Atual" />
+
+            <Button
+                android:id="@+id/BtnPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCLickPerfilUsuario"
+                android:text="Perfil" />
+
+            <Button
+                android:id="@+id/BtnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCLickLogout"
+                android:text="Sair" />
+
         </LinearLayout>
 
         <LinearLayout

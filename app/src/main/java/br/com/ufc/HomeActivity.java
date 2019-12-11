@@ -76,6 +76,15 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onCLickPerfilUsuario(View view){
+        Intent intent = new Intent(this, Perfil_Usuario.class);
+        startActivity(intent);
+    }
+
+    public void onCLickLogout(View view){
+        finish();
+    }
+
 
     @Override
     protected void onStart() {

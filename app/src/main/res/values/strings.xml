@@ -2,7 +2,7 @@
     <string name="app_name">AlugaAí</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_tab_locatario">Imóveis</string>
-    <string name="title_tab_locador">Meus Imóveis</string>
+    <string name="title_tab_locador">Locador</string>
     <string name="title_listImoveis_locatario">Imóveis Disponíveis</string>
     <string name="btn_principal">Principal</string>
     <string name="btn_add">Cadastrar</string>

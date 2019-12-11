@@ -31,4 +31,13 @@ public class FragLocador extends Fragment {
         startActivity(intent);
     }
 
+    public void onCLickPerfilUsuario(View view){
+        Intent intent = new Intent(getActivity(), Perfil_Usuario.class);
+        startActivity(intent);
+    }
+
+    public void onCLickLogout(View view){
+        getActivity().finish();
+    }
+
 }
